@@ -24,7 +24,7 @@ def eventpage(request):
     if request.method == 'POST':
         form = UploadFileForm(request.POST, request.FILES)
         if form.is_valid():
-            path = '../static/uploads/' + request.FILES['input-b1'].name
+            path = '/home/depuleio/aroundMe/static/uploads/' + request.FILES['input-b1'].name
             print("PATH "+ path)
             handle_uploaded_file(request.FILES['input-b1'],path)
             #return render(request, 'eventpage.html', {'form':form}, c)
@@ -49,7 +49,7 @@ def createEvent(request):
         print("enter try")
         data = json.loads(request.body.decode("utf-8"))
         filename = str(data[u'filename'])
-        path = str("../static/uploads/" + filename)
+        path = str("/home/depuleio/aroundMe/static/uploads/" + filename)
 
         newEvent = Event(event_title= str(data[u'title']), event_date= str(data[u'date']), event_time= str(data[u'time']), 
             event_location= str(data[u'location']), category= str(data[u'category']),reader= path,)
@@ -62,7 +62,6 @@ def createEvent(request):
     
     except Exception as e:
         response["error"] = str(e)
-        print str(e)
         
     
     return JsonResponse(response)
