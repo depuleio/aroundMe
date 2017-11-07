@@ -60,7 +60,7 @@ def createEvent(request):
         print("enter try")
         data = json.loads(request.body.decode("utf-8"))
         filename = str(data.get(u'filename'))
-        print "HEREEEE" + filename
+        #print "HEREEEE" + filename
         if filename == None:
             path = "https://i.pinimg.com/originals/9b/87/0b/9b870b29291ee7502d0ec99ab3b6733d.png"
         else:
