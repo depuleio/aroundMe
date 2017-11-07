@@ -4,6 +4,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Event 
 from .forms import UploadFileForm
+from django.conf import settings
 import json, base64, os
 from django.http import JsonResponse, HttpResponseRedirect
 from django.core.urlresolvers import reverse
@@ -22,6 +23,10 @@ def home(request):
     return render(request, 'base.html', {'events':events}, c)
 
 @csrf_protect
+def eventForm(request):
+    return render(request, 'eventForm.html')
+
+@csrf_protect
 def eventpage(request):
     c = {}
     if request.method == 'POST':
@@ -31,7 +36,10 @@ def eventpage(request):
             print(str(filename))
             if filename != None:
                 filename = filename.name
-                path = '/home/depuleio/aroundMe/static/uploads/' + filename
+                if settings.DEBUG:
+                    path = '/static/uploads/' + filename
+                else:
+                    path = '/static/uploads/' + filename
                 handle_uploaded_file(request.FILES['input-b1'],path)
             return HttpResponseRedirect(reverse('home'))
         else:
@@ -57,7 +65,7 @@ def createEvent(request):
         if filename == None:
             path = "https://i.pinimg.com/originals/9b/87/0b/9b870b29291ee7502d0ec99ab3b6733d.png"
         else:
-            path = str("../static/uploads/" + filename)
+            path = str("/static/uploads/" + filename)
 
         newEvent = Event(event_title= str(data[u'title']), event_date= str(data[u'date']), event_time= str(data[u'time']), 
             event_location= str(data[u'location']), category= str(data[u'category']),reader= path,)
