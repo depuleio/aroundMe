@@ -26,10 +26,10 @@
   border: 0;
 }
 .embed-responsive-16by9 {
-  padding-bottom: 56.25%;
+  padding-bottom: 50.25%;
 }
 .embed-responsive-4by3 {
-  padding-bottom: 75%;
+  padding-bottom: 70%;
 }
 
   h1{
@@ -136,7 +136,6 @@ strong{
       /*opacity: 0.9;*/
       /*background-image: url(https://photos.smugmug.com/Years/2009/09098-New-Students/i-fXS4Gd6/0/76e9da4b/XL/IMG_0361-XL.jpg);*/
       background-color: black;
-
       background-attachment: fixed;
       background-position: center;
       background-repeat: no-repeat;
