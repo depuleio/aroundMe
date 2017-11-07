@@ -36,10 +36,8 @@ def eventpage(request):
             print(str(filename))
             if filename != None:
                 filename = filename.name
-                if settings.DEBUG:
-                    path = '/static/uploads/' + filename
-                else:
-                    path = '/static/uploads/' + filename
+                path = os.path.join(settings.BASE_DIR, 'static', "uploads/"+filename)
+                path = str(path.replace(" ",""))
                 handle_uploaded_file(request.FILES['input-b1'],path)
             return HttpResponseRedirect(reverse('home'))
         else:
@@ -62,10 +60,12 @@ def createEvent(request):
         print("enter try")
         data = json.loads(request.body.decode("utf-8"))
         filename = str(data.get(u'filename'))
+        print "HEREEEE" + filename
         if filename == None:
             path = "https://i.pinimg.com/originals/9b/87/0b/9b870b29291ee7502d0ec99ab3b6733d.png"
         else:
-            path = str("/static/uploads/" + filename)
+            path = "../static/uploads/" + filename
+            path = str(path.replace(" ",""))
 
         newEvent = Event(event_title= str(data[u'title']), event_date= str(data[u'date']), event_time= str(data[u'time']), 
             event_location= str(data[u'location']), category= str(data[u'category']),reader= path,)
