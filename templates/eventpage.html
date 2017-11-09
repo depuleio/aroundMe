@@ -54,7 +54,7 @@
 									<h5> Select Category for Event </h5>
                                     <form id="categories">
 										<ul>
-											<input name="cat" type = "radio" id="one">
+											<input name="cat" type = "radio" id="one" value="EDU">
 											<label for = "one">
 												<span></span>
 												Educational 
@@ -63,7 +63,7 @@
 										</ul>
 
 										<ul>
-											<input name="cat" type = "radio" id="two">
+											<input name="cat" type = "radio" id="two" value="ART">
 											<label for = "two">
 												<span></span>
 												Arts & Crafts
@@ -71,7 +71,7 @@
 										</ul>
 
 										<ul>
-											<input name="cat" type = "radio" id="three">
+											<input name="cat" type = "radio" id="three" value="SOC">
 											<label for = "three">
 												<span></span>
 												Social 
@@ -79,7 +79,7 @@
 										</ul>
 
 										<ul>
-											<input name="cat" type = "radio" id="four">
+											<input name="cat" type = "radio" id="four" value="LTE">
 											<label for = "four">
 												<span></span>
 												Late Night  
@@ -164,7 +164,7 @@
 	  var date = document.getElementById("event_date").value;
 	  var time = document.getElementById("event_time").value;
 	  var location = document.getElementById("event_location").value;
-      var category = $("input[name=cat]:checked").val();
+      var category = $("input:radio[name=cat]:checked").val();
       var file = files[0];
 	  var data = {"title":title, "date":date, "time":time, "location":location, "category":category, "filename":file.filename};
 	  //"data":file.data};

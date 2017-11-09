@@ -33,7 +33,6 @@ def eventpage(request):
         form = UploadFileForm(request.POST, request.FILES)
         if form.is_valid():
             filename = request.FILES.get('input-b1')
-            print(str(filename))
             if filename != None:
                 filename = filename.name
                 path = os.path.join(settings.BASE_DIR, 'static', "uploads/"+filename)
@@ -57,10 +56,8 @@ def createEvent(request):
     response = {"code": 400, "message": "request failed to send"}
     
     try:
-        print("enter try")
         data = json.loads(request.body.decode("utf-8"))
         filename = str(data.get(u'filename'))
-        #print "HEREEEE" + filename
         if filename == None:
             path = "https://i.pinimg.com/originals/9b/87/0b/9b870b29291ee7502d0ec99ab3b6733d.png"
         else:
@@ -71,14 +68,10 @@ def createEvent(request):
             event_location= str(data[u'location']), category= str(data[u'category']),reader= path,)
         
         newEvent.save()
-        print("saved")
         response["code"] = 200
-        response["message"] = "success"
-        
-    
+        response["message"] = "success"  
     except Exception as e:
         response["error"] = str(e)
-        
     
     return JsonResponse(response)
 

@@ -15,6 +15,9 @@
     <link rel="stylesheet" href="{% static 'css/app.css' %}">
     {% block stylesheet %}{% endblock %}
   </head>
+    <script src="https://use.fontawesome.com/9923c2a030.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
   {% block body %}
   <body id="aroundMe">
    
@@ -41,10 +44,10 @@
           		<li><a href="{% url 'landingpage' %}" target="_blank" style="color: white;">About</a></li>
 
           		<div class="dropdown-divider"></div>
-         		<li><a href="#events" style="color: white;">Events</a></li>
-         		<div class="dropdown-divider"></div>
-            <li><a href="{% url 'landingpage' %}" style="color: white;">Landing Page</a></li>
-            <div class="dropdown-divider"></div>
+           		<li><a href="#events" style="color: white;">Events</a></li>
+           		<div class="dropdown-divider"></div>
+              <li><a href="{% url 'landingpage' %}" style="color: white;">Landing Page</a></li>
+              <div class="dropdown-divider"></div>
             </ul>
             {% if user.is_authenticated %}
               <ul class="navbar-nav ml-auto">
@@ -85,45 +88,15 @@
   </div>
 </div>
  
-</div>
 
 <div id="about" class="new" style="background: white;">
   <div class="container text-center">
     <h3 style="letter-spacing:20px;">ABOUT US</h3>
     <div>
-    <p style="padding-bottom: 30px;">University at Buffalo is home to more than 30,000 students and there are cultural, social and academic events going on everyday. ArouundMe is an elegant website built to connect users to events around them. This website not only  shows you what and were the events are going on but also allows users to create event for others to see. </p>
-    <hr style="padding: 0%;">
+      <p style="padding-bottom: 30px;">University at Buffalo is home to more than 30,000 students and there are cultural, social and academic events going on everyday. ArouundMe is an elegant website built to connect users to events around them. This website not only  shows you what and were the events are going on but also allows users to create event for others to see. </p>
+      <hr style="padding: 0%;">
     </div> 
-
-<!-- <div class="container-fluid text-center bg-grey" style="padding-bottom: 50px;">
-  <h1  style="color:blue; padding:50px; letter-spacing:20px;"><strong>AROUNDME TEAM</strong></h2>
-  
-  <div class="row text-center">
-    <div class="col-sm-4" style="padding-bottom: 40px">
-        <img src="https://avatars2.githubusercontent.com/u/16300466?v=4&s=460" class="img-circle" alt="Dan" width="85%" height="70%">
-         <h2 style="color:black !important;">Daniel Puleio</strong></h2>
-        <h4>B.S Computer Engineering 2018</h4>
-		<a href="https://www.linkedin.com/in/danielpuleio"><i class="fa fa-linkedin-square fa-2x" style="padding-left:5px;"></i></a>
-		<a href="https://www.github.com/depuleio"><i class="fa fa-github-square fa-2x" style="padding-left:10px"></i></a>
-    </div>
-	
-    <div class="col-sm-4" style="padding-bottom: 40px">
-        <img src="http://www.sonamwangchuk.info/photo.jpg" class="img-circle" alt="Sonam" width="85%" height="70%">
-        <h2 style="color:black !important;" >Sonam Wangchuk</h2>
-        <h4 >B.S Computer Science 2018</h4>
-		<a href="https://www.linkedin.com/in/sonamwangchuk"><i class="fa fa-linkedin-square fa-2x" style="padding-left:5px;"></i></a>
-		<a href="https://www.github.com/sonamwan"><i class="fa fa-github-square fa-2x" style="padding-left:10px";></i></a>
-    </div>
-	
-    <div class="col-sm-4" style="padding-bottom: 40px">
-        <img src="https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAIA_wDGAAAAAQAAAAAAAAtrAAAAJDNkOTFlNTBmLWViNzAtNDllMy1hMDM3LTkxZTBhZjhiMjRmNg.jpg" class="img-circle" alt="Sada" width="85%" height="70%">
-        <h2 style="color:black !important;" >Sada Haider</h2>
-        <h4>B.S Computer Engineering 2018</h4>
-		<a href="https://www.linkedin.com/in/sada-haider/"><i class="fa fa-linkedin-square fa-2x" style="padding-left:5px;"></i></a>
-		<a href="https://www.github.com/sadahaider"><i class="fa fa-github-square fa-2x" style="padding-left:10px";></i></a>
-    </div>
-</div>      -->
-</div>
+  </div>
 </div>
 
 <!-- Container (Event Section) -->
@@ -145,14 +118,19 @@
   display: none;
 }
 
+.limit {
+  max-height:50px;
+  overflow:hidden;
+}
+
 .show {
   display: block;
 }
 
 .container {
   margin-top: 20px;
-  /*overflow: hidden;*/
 }
+
 .button {
   border-radius: 4px;
   background-color: #005bbb;
@@ -174,6 +152,15 @@
   transition: 0.5s;
 }
 
+ol li:nth-child(2n+0) {
+    list-style: none;
+}
+
+.row.limit [class*="col-"]{
+  max-height:900px;
+  overflow:hidden;
+}
+
 .button span:after {
   content: '\00bb';
   position: absolute;
@@ -187,149 +174,90 @@
   padding-right: 25px;
 }
 
+
 .button:hover span:after {
   opacity: 1;
   right: 0;
 }
 </style>
 
-
-<!-- Test by commenting below ( <div class="container"> )filtering example  -->
-
-<!-- <div class="container">
-   <button class="button" onclick="filterSelection('all')" name="category" ><span>Show all </span></button>
-  <button class="button" onclick="filterSelection('Educational')" name="category" ><span>Educational </span></button>
-  <button class="button" onclick="filterSelection('Arts')" name="category" ><span>Arts </span></button>
-  <button class="button" onclick="filterSelection('Social')" name="category" ><span>Social </span></button>
-  <button class="button" onclick="filterSelection('LateNight')" name="category" ><span>Late Night </span></button>
-  <br> 
-  
-  <button class="button" onclick="filterSelection('cars')" name="Cars" ><span>Cars </span></button>
-  <br>
-
-  <h5 class="filterDiv cars">BMW</h5>
-  <div class="filterDiv colors fruits">Orange</div>
-  <h5 class="filterDiv cars">Volvo</h5>
-  <div class="filterDiv colors">Red</div>
-  <div class="filterDiv cars animals">Mustang</div>
-  <div class="filterDiv colors">Blue</div>
-  <div class="filterDiv animals">Cat</div>
-  <div class="filterDiv animals">Dog</div>
-  <div class="filterDiv fruits">Melon</div>
-  <div class="filterDiv fruits animals">Kiwi</div>
-  <div class="filterDiv fruits">Banana</div>
-  <div class="filterDiv fruits">Lemon</div>
-  <div class="filterDiv animals">Cow</div>
-
-
-</div> -->
-
-
- 
- <!-- *************** ^^ Event Category Filtering HTML & CSS ^^ ***************************** -->
-
-
 <div class="container-fluid bg-3 text-center" style="background-color: white; padding-bottom: 50px; padding-top: 20px;">
-    <div class="container">
+  <div class="container">
 
-  <button class="button" onclick="filterSelection('all')" name="category" ><span>Show all </span></button>
-  <button class="button" onclick="filterSelection('Educational')" name="category" ><span>Educational </span></button>
-  <button class="button" onclick="filterSelection('Arts')" name="category" ><span>Arts </span></button>
-  <button class="button" onclick="filterSelection('Social')" name="category" ><span>Social </span></button>
-  <button class="button" onclick="filterSelection('LateNight')" name="category" ><span>Late Night </span></button>
-  <br>
-  <!-- Test buttons since only category showing up is 'EDU' and 'on' -->
-  <button class="button" onclick="filterSelection('EDU')" name="EDU" ><span>EDU </span></button>
-  <button class="button" onclick="filterSelection('on')" name="on" ><span>on </span></button>
-  <br>
-  <br>
-  <!-- Test Button ^^ -->
-        <div class="row">
-<!-- Ideal image for flyer is 900px by 1200px -->
-      {% if events.count > 0 %}
-        {%for event in events %}
-        	<div class="col-sm-3">
-        		<div class="thumbnail">
-            <a href="{% url 'eventForm' %}">
-     	 			<img src={{event.reader}} class="img-responsive" alt="Image"> 
-            
-<!-- I am not passing filterdiv event.category properly here -->
-<!-- check this link: https://stackoverflow.com/questions/30668433/how-can-i-set-class-name-dynamically -->
-
-     	 				<div class="container text-center" class="filterDiv" class$="{{ event.category}}" >
-    	  				<h5 style="padding-top: 20px; font-size: 20px; text-align:center; letter-spacing: 5px; color: #005bbb; text-transform: uppercase;"> 
-                  {{ event.event_title }}  </h5><br>
-                <h6 style="font-size: 16px; text-align:left; color:#005bbb; " >
-                  <strong style="text-transform: uppercase; color: black;">Date:</strong>&nbsp;&nbsp;
-                {{ event.event_date }} </h6><br>
-                <h6 style="font-size: 16px; text-align:left;color:#005bbb;">
-                <strong style="text-transform: uppercase;color: black;">Time:</strong>
-              {{ event.event_time }} </h6><br>
-                <h6 style="font-size: 16px; text-align:left;color:#005bbb;">  
-                <strong style="text-transform: uppercase;color: black;">Location:</strong> 
-                {{ event.event_location}} </h6><br>
-                <h6 class="filterDiv" class$="{{ event.category}}" {{ event.category}}" style="font-size: 16px; text-align:left;color:#005bbb;>
-                <strong style="text-transform: uppercase;color: black;">Category:</strong>&nbsp;&nbsp;
-                {{ event.category}} </h6><br>
-    	  			</div>
-    	  		</div>
-    		  </div>
-        {% endfor %}
-      {% endif %}
-
-        </div>
-    </div>
+      <button class="button" onclick="filterSelection('ALL')" name="category" value="All"><span>Show all </span></button>
+      <button class="button" onclick="filterSelection('EDU')" name="category" value="EDU" ><span>Educational </span></button>
+      <button class="button" onclick="filterSelection('ART')" name="category" value="ART"><span>Arts </span></button>
+      <button class="button" onclick="filterSelection('SOC')" name="category" value="SOC"><span>Social </span></button>
+      <button class="button" onclick="filterSelection('LTE')" name="category" value="LTE"><span>Late Night </span></button>
+      <br>
+      <br>
+    <!-- Test Button ^^ -->
+      <ol class="row list-unstyled" id="newsfeed">
+  <!-- Ideal image for flyer is 900px by 1200px -->
+        {% if events.count > 0 %}
+          {%for event in events %}
+          	<li class="col-lg-4 list-group-item" value={{ event.category }}>
+          		<div class="thumbnail"> 
+                <a href="{% url 'eventForm' %}">
+         	 			<img src={{event.reader}} class="img-responsive" alt="Image"> 
+       	 				<div class="container text-center">
+      	  				<h5 style="padding-top: 20px; font-size: 20px; text-align:center; letter-spacing: 5px; color: #005bbb; text-transform: uppercase;"> 
+                    {{ event.event_title }}  </h5><br>
+                  <h6 style="font-size: 16px; text-align:left; color:#005bbb; " >
+                    <strong style="text-transform: uppercase; color: black;">Date:</strong>&nbsp;&nbsp;
+                    {{ event.event_date }} </h6><br>
+                  <h6 style="font-size: 16px; text-align:left;color:#005bbb;">
+                  <strong style="text-transform: uppercase;color: black;">Time:</strong>
+                    {{ event.event_time }} </h6><br>
+                  <h6 style="font-size: 16px; text-align:left;color:#005bbb;">  
+                  <strong style="text-transform: uppercase;color: black;">Location:</strong> 
+                    {{ event.event_location }} </h6><br>
+                  <h6 class="filterDiv" class$="{{ event.category}}" {{ event.category}}" style="font-size: 16px; text-align:left;color:#005bbb;>
+                  <strong style="text-transform: uppercase;color: black;">Category:</strong>&nbsp;&nbsp;
+                    {{ event.category }} </h6><br>
+      	  			</div>	
+                </a>
+      	  		</div>
+      		  </li>
+          {% endfor %}
+        {% endif %}
+      </ol>
+  </div>
 </div>
 
 <!-- *************** Event Category Filtering function ***************** -->
 <script >
-filterSelection("all")
+
 function filterSelection(c) {
-  var x, i;
-  x = document.getElementsByClassName("filterDiv");
-  if (c == "all") c = "";
-  for (i = 0; i < x.length; i++) {
-    w3RemoveClass(x[i], "show");
-    if (x[i].className.indexOf(c) > -1) w3AddClass(x[i], "show");
-  }
-}
-
-function w3AddClass(element, name) {
-  var i, arr1, arr2;
-  arr1 = element.className.split(" ");
-  arr2 = name.split(" ");
-  for (i = 0; i < arr2.length; i++) {
-    if (arr1.indexOf(arr2[i]) == -1) {element.className += " " + arr2[i];}
-  }
-}
-
-function w3RemoveClass(element, name) {
-  var i, arr1, arr2;
-  arr1 = element.className.split(" ");
-  arr2 = name.split(" ");
-  for (i = 0; i < arr2.length; i++) {
-    while (arr1.indexOf(arr2[i]) > -1) {
-      arr1.splice(arr1.indexOf(arr2[i]), 1);     
+  var i = 0;
+  var listItems = $("#newsfeed li");
+  listItems.each(function(li) {
+    var item = $(this);
+    var cat = item.attr("value");
+    console.log(cat);
+    console.log(c);
+    if(cat == c || c == 'ALL'){
+      item.css('display','inline');
+      console.log("display");
     }
-  }
-  element.className = arr1.join(" ");
+    else{
+      item.css('display','none');
+      console.log("hide");
+    }
+});
 }
 </script>
 
 <!-- *************** Event Category Filtering function ***************** -->
 
 <div class="container text-center" style="background-color: white;">
-<footer class="container-fluid text-center">
-  <a href="#aroundMe" title="To Top">
-    <span class="glyphicon glyphicon-chevron-up"></span>
-  </a>
-  <p>&copy 2017 Proudly Created By TEAM 32</p>
-</footer> 
-</div>
-
-    <script src="https://use.fontawesome.com/9923c2a030.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>  
+  <footer class="container-fluid text-center">
+    <a href="#aroundMe" title="To Top">
+      <span class="glyphicon glyphicon-chevron-up"></span>
+    </a>
+    <p>&copy 2017 Proudly Created By TEAM 32</p>
+  </footer> 
+</div> 
 
 <script>
 
