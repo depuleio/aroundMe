@@ -9,3 +9,10 @@ class SignUpForm(UserCreationForm):
     class Meta:
         model = User
         fields = ('username', 'email', 'password1', 'password2')
+
+    def clean_email(self):
+        data = self.cleaned_data['email']
+        ubmail = data.split('@')[1]
+        if "@buffalo.edu" not in ubmail:
+            raise forms.ValidationError("Must enter a UB email address")
+        return data
