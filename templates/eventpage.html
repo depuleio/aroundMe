@@ -32,16 +32,33 @@
 										</div>
 									</div>
 
-
 									<div class="col-xs-6 col-sm-6 col-md-6">
 										<div class="form-group">
-											<input type="Location" name="event_location" id="event_location" class="form-control input-sm" placeholder="Event Location">
+											<input type="Location: street" name="event_street" id="event_street" class="form-control input-sm" placeholder="Location Street">
 										</div>
 									</div>
 
 									<div class="col-xs-6 col-sm-6 col-md-6">
 										<div class="form-group">
 											<input type="text" name="event_time" id="event_time" class="form-control input-sm" placeholder="Time Range (7pm - 8pm)">
+										</div>
+									</div>
+
+									<div class="col-xs-6 col-sm-6 col-md-6">
+										<div class="form-group">
+											<input type="Location: city" name="event_city" id="event_city" class="form-control input-sm" placeholder="Location City">
+										</div>
+									</div>
+
+									<div class="col-xs-6 col-sm-6 col-md-6">
+										<div class="form-group">
+											<input type="Date" name="event_date" id="event_date" class="form-control input-sm" placeholder="Date">
+										</div>
+									</div>
+									
+									<div class="col-xs-6 col-sm-6 col-md-6">
+										<div class="form-group">
+											<input type="Location: zip" name="event_zip" id="event_zip" class="form-control input-sm" placeholder="Location Zip">
 										</div>
 									</div>
 
@@ -158,11 +175,14 @@
 	  var title = document.getElementById("event_name").value;
 	  var date = document.getElementById("event_date").value;
 	  var time = document.getElementById("event_time").value;
-	  var location = document.getElementById("event_location").value;
+	  var street = document.getElementById("event_street").value;
+	  var city = document.getElementById("event_city").value;
+	  var zip = document.getElementById("event_zip").value;
       var category = $("input:radio[name=cat]:checked").val();
       var file = files[0];
-	  var data = {"title":title, "date":date, "time":time, "location":location, "category":category, "filename":file.filename};
-	  //"data":file.data};
+      var additional_info = document.getElementById("additional_info").value;
+      var user = "{{ user.email }}";
+	  var data = {"title":title, "date":date, "additional_info":additional_info, "city":city, "zip":zip, "user":user, "time":time, "street":street, "category":category, "filename":file.filename};  
 
 	  $.ajax({
 	      type:"POST",
