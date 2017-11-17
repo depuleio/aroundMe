@@ -23,8 +23,11 @@ def home(request):
     return render(request, 'base.html', {'events':events}, c)
 
 @csrf_protect
-def eventForm(request):
-    return render(request, 'eventForm.html')
+def eventForm(request, eventid):
+    print(str(eventid))
+    event = Event.objects.get(id=eventid)
+    filename = event.reader
+    return render(request, 'eventForm.html', {'event':event,'filename':filename})
 
 @csrf_protect
 def eventpage(request):
@@ -61,17 +64,20 @@ def createEvent(request):
         if filename == None:
             path = "https://i.pinimg.com/originals/9b/87/0b/9b870b29291ee7502d0ec99ab3b6733d.png"
         else:
-            path = "../static/uploads/" + filename
+            path = "/static/uploads/" + filename
             path = str(path.replace(" ",""))
 
-        newEvent = Event(event_title= str(data[u'title']), event_date= str(data[u'date']), event_time= str(data[u'time']), 
-            event_location= str(data[u'location']), category= str(data[u'category']),reader= path,)
+        newEvent = Event(event_title= str(data[u'title']), event_date=str(data[u'date']), event_info=str(data[u'additional_info']), 
+            event_time= str(data[u'time']), event_street= str(data[u'street']), event_city= str(data[u'city']), 
+            event_zip= str(data[u'zip']), event_user= str(data[u'user']), category= str(data[u'category']),reader= path,)
         
         newEvent.save()
+        print("Saved")
         response["code"] = 200
         response["message"] = "success"  
     except Exception as e:
         response["error"] = str(e)
+        print(str(e))
     
     return JsonResponse(response)
 

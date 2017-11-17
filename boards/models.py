@@ -6,6 +6,8 @@ from django.utils.text import Truncator
 
 from django.utils import timezone
 
+import uuid
+
 # Create your models here.
 
 
@@ -14,7 +16,11 @@ class Event(models.Model):
     event_title = models.CharField(max_length=30,default='')
     event_date = models.CharField(max_length=30,default='')
     event_time = models.CharField(max_length=15,default='')
-    event_location = models.CharField(max_length=30,default='')
+    event_street = models.CharField(max_length=30,default='')
+    event_city = models.CharField(max_length=30,default='')
+    event_zip = models.CharField(max_length=30,default='')
+    event_info = models.CharField(max_length=100,default='')
+    event_user = models.CharField(max_length=20,default='')
     reader = models.CharField(max_length=50,default='')
     pub_date = models.DateTimeField(default=timezone.now)
 
