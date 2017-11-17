@@ -198,7 +198,7 @@ ol li:nth-child(2n+0) {
           {%for event in events %}
           	<li class="col-lg-4 list-group-item" value={{ event.category }}>
           		<div class="thumbnail"> 
-                <a href="{% url 'eventForm' %}">
+                <a href="{% url 'eventForm' event.id %}"> {% csrf_token %}
          	 			<img src={{event.reader}} class="img-responsive" alt="Image"> 
        	 				<div class="container text-center">
       	  				<h5 style="padding-top: 20px; font-size: 20px; text-align:center; letter-spacing: 5px; color: #005bbb; text-transform: uppercase;"> 
