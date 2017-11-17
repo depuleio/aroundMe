@@ -1,0 +1,62 @@
+.moveImage{
+	position: relative;
+	top: 20px;
+}
+
+.mapper{
+	position: relative;
+	top: -100px;
+	margin-left: -340px;
+}
+
+.comments{
+	position: relative;
+	top: -80px;
+	margin-left: 300px;
+	margin-right: 300px;
+}
+
+
+.glyphicon {
+	font-size: 25px;
+	top: 35px;
+	margin-left: 300px
+
+}
+
+.text0 {
+	position: relative;
+	font: 30px arial;
+	top: -5px;
+	margin-left: 330px
+}
+
+
+.glyphicon-map-marker{
+	top: -45px;
+	margin-left: 600px;
+}
+
+.text1 {
+	position: relative;
+	font: 20px arial;
+	top: -77px;
+	margin-left: 630px
+}
+
+.glyphicon-user {
+
+	position: relative;
+	margin-left: 940px;
+	top: -110px;
+}
+
+.text2 {
+	position: relative;
+	font: 20px arial;
+	top: -142px;
+	margin-left: 975px
+
+}
+
+
