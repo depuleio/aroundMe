@@ -21,7 +21,9 @@ class Event(models.Model):
     event_zip = models.CharField(max_length=30,default='')
     event_info = models.CharField(max_length=100,default='')
     event_user = models.CharField(max_length=20,default='')
+    event_form = models.CharField(max_length=50,default='')
     reader = models.CharField(max_length=50,default='')
+    path = models.CharField(max_length=50,default='')  
     pub_date = models.DateTimeField(default=timezone.now)
 
     EDUCATIONAL = 'EDU'
