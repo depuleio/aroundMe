@@ -211,7 +211,7 @@ ol li:nth-child(2n+0) {
                     {{ event.event_time }} </h6><br>
                   <h6 style="font-size: 16px; text-align:left;color:#005bbb;">  
                   <strong style="text-transform: uppercase;color: black;">Location:</strong> 
-                    {{ event.event_location }} </h6><br>
+                    {{ event.event_street }}, {{ event.event_city }}, {{ event.event_zip }}  </h6><br>
                   <h6 class="filterDiv" class$="{{ event.category}}" {{ event.category}}" style="font-size: 16px; text-align:left;color:#005bbb;>
                   <strong style="text-transform: uppercase;color: black;">Category:</strong>&nbsp;&nbsp;
                     {{ event.category }} </h6><br>

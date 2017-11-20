@@ -8,9 +8,6 @@ from django.utils import timezone
 
 import uuid
 
-# Create your models here.
-
-
 class Event(models.Model):    
 
     event_title = models.CharField(max_length=30,default='')
@@ -20,7 +17,7 @@ class Event(models.Model):
     event_city = models.CharField(max_length=30,default='')
     event_zip = models.CharField(max_length=30,default='')
     event_info = models.CharField(max_length=100,default='')
-    event_user = models.CharField(max_length=20,default='')
+    event_user = models.ForeignKey(User)
     event_form = models.CharField(max_length=50,default='')
     reader = models.CharField(max_length=50,default='')
     path = models.CharField(max_length=50,default='')  
@@ -40,4 +37,12 @@ class Event(models.Model):
 
     def was_published_recently(self):
         return self.pub_date >= timezone.now() - datetime.timedelta(days=1)
+
+# Create your models here.
+class Comment(models.Model):
+    comment_text = models.CharField(max_length=200,default='')
+    event_id = models.ForeignKey(Event,on_delete=models.CASCADE)
+    comment_author = models.ForeignKey(User)
+    published_date = models.DateTimeField(default=timezone.now)
+
 
