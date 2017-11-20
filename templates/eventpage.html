@@ -28,25 +28,37 @@
 								<div class="row">
 									<div class="col-xs-6 col-sm-6 col-md-6">
 										<div class="form-group">
-											<input type="text" name="event_name" id="event_name" class="form-control input-sm" placeholder="Event Name">
+											<input type="text" name="event_name" id="event_name" class="form-control input-sm" placeholder="Event Name" maxlength="20">
 										</div>
 									</div>
 
 									<div class="col-xs-6 col-sm-6 col-md-6">
 										<div class="form-group">
-											<input type="Date" name="event_date" id="event_date" class="form-control input-sm" placeholder="Event Date">
+											<input type="Location: street" name="event_street" id="event_street" class="form-control input-sm" placeholder="Location Street" maxlength="20">
 										</div>
 									</div>
 
 									<div class="col-xs-6 col-sm-6 col-md-6">
 										<div class="form-group">
-											<input type="Location" name="event_location" id="event_location" class="form-control input-sm" placeholder="Event Location">
+											<input type="text" name="event_time" id="event_time" class="form-control input-sm" placeholder="Time Range (7pm - 8pm)" maxlength="10">
 										</div>
 									</div>
 
 									<div class="col-xs-6 col-sm-6 col-md-6">
 										<div class="form-group">
-											<input type="Time" name="event_time" id="event_time" class="form-control input-sm" placeholder="Event Time">
+											<input type="Location: city" name="event_city" id="event_city" class="form-control input-sm" placeholder="Location City" maxlength="20">
+										</div>
+									</div>
+
+									<div class="col-xs-6 col-sm-6 col-md-6">
+										<div class="form-group">
+											<input type="Date" name="event_date" id="event_date" class="form-control input-sm" placeholder="Date">
+										</div>
+									</div>
+									
+									<div class="col-xs-6 col-sm-6 col-md-6">
+										<div class="form-group">
+											<input type="Location: zip" name="event_zip" id="event_zip" class="form-control input-sm" placeholder="Location Zip" maxlength="8">
 										</div>
 									</div>
 
@@ -54,7 +66,7 @@
 									<h5> Select Category for Event </h5>
                                     <form id="categories">
 										<ul>
-											<input name="cat" type = "radio" id="one">
+											<input name="cat" type = "radio" id="one" value="EDU">
 											<label for = "one">
 												<span></span>
 												Educational 
@@ -63,7 +75,7 @@
 										</ul>
 
 										<ul>
-											<input name="cat" type = "radio" id="two">
+											<input name="cat" type = "radio" id="two" value="ART">
 											<label for = "two">
 												<span></span>
 												Arts & Crafts
@@ -71,7 +83,7 @@
 										</ul>
 
 										<ul>
-											<input name="cat" type = "radio" id="three">
+											<input name="cat" type = "radio" id="three" value="SOC">
 											<label for = "three">
 												<span></span>
 												Social 
@@ -79,7 +91,7 @@
 										</ul>
 
 										<ul>
-											<input name="cat" type = "radio" id="four">
+											<input name="cat" type = "radio" id="four" value="LTE">
 											<label for = "four">
 												<span></span>
 												Late Night  
@@ -90,7 +102,7 @@
 
 								<div class="col-xs-6 col-sm-6 col-md-6">
 									<div class="form-group">
-										<input type="text" name="additional_info" id="additional_info" class="form-control input-sm" placeholder="Additional Information">
+										<input type="text" name="additional_info" id="additional_info" class="form-control input-sm" placeholder="Additional Information" maxlength="50">
 									</div>
 								</div>
 
@@ -143,8 +155,8 @@
 
     var files = [];
     var file;
+
     $("input[type=file]").change(function(event) {
-    	console.log("PUSSY");
         $.each(event.target.files, function(index, file) {
 	        var reader = new FileReader();
 	        reader.onload = function(event) {  
@@ -163,11 +175,13 @@
 	  var title = document.getElementById("event_name").value;
 	  var date = document.getElementById("event_date").value;
 	  var time = document.getElementById("event_time").value;
-	  var location = document.getElementById("event_location").value;
-      var category = $("input[name=cat]:checked").val();
+	  var street = document.getElementById("event_street").value;
+	  var city = document.getElementById("event_city").value;
+	  var zip = document.getElementById("event_zip").value;
+      var category = $("input:radio[name=cat]:checked").val();
       var file = files[0];
-	  var data = {"title":title, "date":date, "time":time, "location":location, "category":category, "filename":file.filename};
-	  //"data":file.data};
+      var additional_info = document.getElementById("additional_info").value;
+	  var data = {"title":title, "date":date, "additional_info":additional_info, "city":city, "zip":zip, "time":time, "street":street, "category":category, "filename":file.filename};  
 
 	  $.ajax({
 	      type:"POST",
@@ -175,7 +189,6 @@
 	      async: true,
 	      dataType: 'json',
 	      contentType: 'json',
-	      data: data,
 	      data: JSON.stringify(data),
 	      success: function(response){
 	        if(response['code'] == 200){

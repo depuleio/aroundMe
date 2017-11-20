@@ -15,6 +15,9 @@
     <link rel="stylesheet" href="{% static 'css/app.css' %}">
     {% block stylesheet %}{% endblock %}
   </head>
+    <script src="https://use.fontawesome.com/9923c2a030.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
   {% block body %}
   <body id="aroundMe">
    
@@ -38,28 +41,14 @@
           	<ul class="nav navbar-nav" >
           		<li><a class="active" href="{% url 'home' %}" style="color: white;">AroundMe</a></li>
           		<div class="dropdown-divider"></div>
-          		<li><a href="#about" style="color: white;">About</a></li>
+          		<li><a href="{% url 'landingpage' %}" target="_blank" style="color: white;">About</a></li>
+
           		<div class="dropdown-divider"></div>
-         		<li><a href="#events" style="color: white;">Events</a></li>
-         		<div class="dropdown-divider"></div>
+           		<li><a href="#events" style="color: white;">Events</a></li>
+           		<div class="dropdown-divider"></div>
+              <li><a href="{% url 'landingpage' %}" style="color: white;">Landing Page</a></li>
+              <div class="dropdown-divider"></div>
             </ul>
-            <ul class="navbar-nav ml-left">
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" id="categoryMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: white;">
-                   Categories
-                  </a>
-              		<div class="dropdown-menu" aria-labelledby="Categories"> 
-                        <a class="dropdown-item">Educational</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item">Arts & Crafts</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item">Social</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item">Late Night</a>
-                  </div>
-                </li>
-            </ul>
-              
             {% if user.is_authenticated %}
               <ul class="navbar-nav ml-auto">
                 <li class="nav-item dropdown">
@@ -67,8 +56,8 @@
                     {{ user.username }}
                   </a>
                   <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userMenu">
-                    <a class="dropdown-item" href="#">My account</a>
-                    <div class="dropdown-divider"></div>
+                    <!-- <a class="dropdown-item" href="#">My account</a> -->
+                    <!-- <div class="dropdown-divider"></div> -->
                     <a class="dropdown-item" href="{% url 'eventpage' %}">Create Event</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="{% url 'password_reset' %}">Change password</a>
@@ -99,92 +88,179 @@
   </div>
 </div>
  
-</div>
 
 <div id="about" class="new" style="background: white;">
   <div class="container text-center">
     <h3 style="letter-spacing:20px;">ABOUT US</h3>
     <div>
-    <p style="padding-bottom: 30px;">University at Buffalo is home to more than 30,000 students and there are cultural, social and academic events going on everyday. ArouundMe is an elegant website built to connect users to events around them. This website not only  shows you what and were the events are going on but also allows users to create event for others to see. </p>
-    <hr style="padding: 0%;">
+      <p style="padding-bottom: 30px;">University at Buffalo is home to more than 30,000 students and there are cultural, social and academic events going on everyday. ArouundMe is an elegant website built to connect users to events around them. This website not only  shows you what and were the events are going on but also allows users to create event for others to see. </p>
+      <hr style="padding: 0%;">
     </div> 
-
-<div class="container-fluid text-center bg-grey" style="padding-bottom: 50px;">
-  <h1  style="color:blue; padding:50px; letter-spacing:20px;"><strong>AROUNDME TEAM</strong></h2>
-  
-  <div class="row text-center">
-    <div class="col-sm-4" style="padding-bottom: 40px">
-        <img src="https://avatars2.githubusercontent.com/u/16300466?v=4&s=460" class="img-circle" alt="Dan" width="85%" height="70%">
-         <h2 style="color:black !important;">Daniel Puleio</strong></h2>
-        <h4>B.S Computer Engineering 2018</h4>
-		<a href="https://www.linkedin.com/in/danielpuleio"><i class="fa fa-linkedin-square fa-2x" style="padding-left:5px;"></i></a>
-		<a href="https://www.github.com/depuleio"><i class="fa fa-github-square fa-2x" style="padding-left:10px"></i></a>
-    </div>
-	
-    <div class="col-sm-4" style="padding-bottom: 40px">
-        <img src="http://www.sonamwangchuk.info/photo.jpg" class="img-circle" alt="Sonam" width="85%" height="70%">
-        <h2 style="color:black !important;" >Sonam Wangchuk</h2>
-        <h4 >B.S Computer Science 2018</h4>
-		<a href="https://www.linkedin.com/in/sonamwangchuk"><i class="fa fa-linkedin-square fa-2x" style="padding-left:5px;"></i></a>
-		<a href="https://www.github.com/sonamwan"><i class="fa fa-github-square fa-2x" style="padding-left:10px";></i></a>
-    </div>
-	
-    <div class="col-sm-4" style="padding-bottom: 40px">
-        <img src="https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAIA_wDGAAAAAQAAAAAAAAtrAAAAJDNkOTFlNTBmLWViNzAtNDllMy1hMDM3LTkxZTBhZjhiMjRmNg.jpg" class="img-circle" alt="Sada" width="85%" height="70%">
-        <h2 style="color:black !important;" >Sada Haider</h2>
-        <h4>B.S Computer Engineering 2018</h4>
-		<a href="https://www.linkedin.com/in/sada-haider/"><i class="fa fa-linkedin-square fa-2x" style="padding-left:5px;"></i></a>
-		<a href="https://www.github.com/sadahaider"><i class="fa fa-github-square fa-2x" style="padding-left:10px";></i></a>
-    </div>
-</div>     
-</div>
+  </div>
 </div>
 
-<!-- Container (About Section) -->
+<!-- Container (Event Section) -->
 <div id="events" class="container-fluid bg-3 text-center" style="background-color: #005bbb">
   	<h3 style="color:white !important; font-size:45px !important; letter-spacing: 15px; padding-bottom: 5px !important; padding-top: 15px !important"><strong>EVENTS</strong></h3>
 </div>
 
-<div class="container-fluid bg-3 text-center" style="background-color: white; padding-bottom: 50px; padding-top: 20px;">
-    <div class="container">
-        <div class="row">
-<!-- Ideal image for flyer is 900px by 1200px -->
-      {% if events.count > 0 %}
-        {%for event in events %}
-        	<div class="col-sm-3">
-        		<div class="thumbnail">
-                  
-     	 			<img src={{event.reader}} class="img-responsive" alt="Image"> 
-     	 				<div class="container text-center">
-    	  				<h5 style="padding-top: 20px; font-size: 20px; text-align:center; color: black !important;letter-spacing: 5px;"> 
-                  Event Name: {{ event.event_title }} </h5><br>
-                <h6>Event Date: {{ event.event_date }} </h6><br>
-                <h6> Event Location: {{ event.event_location}} </h6><br>
-    	  			</div>	
-    	  		</div>
-    		  </div>
-        {% endfor %}
-      {% endif %}
+<!-- *************** vv Event Category Filtering HTML & CSS vv ***************************** -->
 
-        </div>
-    </div>
+<style>
+.filterDiv {
+  float: left;
+  background-color: #2196F3;
+  color: #ffffff;
+  width: 100px;
+  line-height: 100px;
+  text-align: center;
+  margin: 2px;
+  display: none;
+}
+
+.limit {
+  max-height:50px;
+  overflow:hidden;
+}
+
+.show {
+  display: block;
+}
+
+.container {
+  margin-top: 20px;
+}
+
+.button {
+  border-radius: 4px;
+  background-color: #005bbb;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 20px;
+  padding: 20px;
+  width: 200px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+ol li:nth-child(2n+0) {
+    list-style: none;
+}
+
+.row.limit [class*="col-"]{
+  max-height:900px;
+  overflow:hidden;
+}
+
+.button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.button:hover span {
+  padding-right: 25px;
+}
+
+
+.button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+</style>
+
+<div class="container-fluid bg-3 text-center" style="background-color: white; padding-bottom: 50px; padding-top: 20px;">
+  <div class="container">
+
+      <button class="button" onclick="filterSelection('ALL')" name="category" value="All"><span>Show all </span></button>
+      <button class="button" onclick="filterSelection('EDU')" name="category" value="EDU" ><span>Educational </span></button>
+      <button class="button" onclick="filterSelection('ART')" name="category" value="ART"><span>Arts </span></button>
+      <button class="button" onclick="filterSelection('SOC')" name="category" value="SOC"><span>Social </span></button>
+      <button class="button" onclick="filterSelection('LTE')" name="category" value="LTE"><span>Late Night </span></button>
+      <br>
+      <br>
+    <!-- Test Button ^^ -->
+      <ol class="row list-unstyled" id="newsfeed">
+  <!-- Ideal image for flyer is 900px by 1200px -->
+        {% if events.count > 0 %}
+          {%for event in events %}
+          	<li class="col-lg-4 list-group-item" value={{ event.category }}>
+          		<div class="thumbnail"> 
+                <a href="{% url 'eventForm' event.id %}"> {% csrf_token %}
+         	 			<img src={{event.reader}} class="img-responsive" alt="Image"> 
+       	 				<div class="container text-center">
+      	  				<h5 style="padding-top: 20px; font-size: 20px; text-align:center; letter-spacing: 5px; color: #005bbb; text-transform: uppercase;"> 
+                    {{ event.event_title }}  </h5><br>
+                  <h6 style="font-size: 16px; text-align:left; color:#005bbb; " >
+                    <strong style="text-transform: uppercase; color: black;">Date:</strong>&nbsp;&nbsp;
+                    {{ event.event_date }} </h6><br>
+                  <h6 style="font-size: 16px; text-align:left;color:#005bbb;">
+                  <strong style="text-transform: uppercase;color: black;">Time:</strong>
+                    {{ event.event_time }} </h6><br>
+                  <h6 style="font-size: 16px; text-align:left;color:#005bbb;">  
+                  <strong style="text-transform: uppercase;color: black;">Location:</strong> 
+                    {{ event.event_street }}, {{ event.event_city }}, {{ event.event_zip }}  </h6><br>
+                  <h6 class="filterDiv" class$="{{ event.category}}" {{ event.category}}" style="font-size: 16px; text-align:left;color:#005bbb;>
+                  <strong style="text-transform: uppercase;color: black;">Category:</strong>&nbsp;&nbsp;
+                    {{ event.category }} </h6><br>
+      	  			</div>	
+                </a>
+      	  		</div>
+      		  </li>
+          {% endfor %}
+        {% endif %}
+      </ol>
+  </div>
 </div>
 
+<!-- *************** Event Category Filtering function ***************** -->
+<script >
+
+function filterSelection(c) {
+  var i = 0;
+  var listItems = $("#newsfeed li");
+  listItems.each(function(li) {
+    var item = $(this);
+    var cat = item.attr("value");
+    console.log(cat);
+    console.log(c);
+    if(cat == c || c == 'ALL'){
+      item.css('display','inline');
+      console.log("display");
+    }
+    else{
+      item.css('display','none');
+      console.log("hide");
+    }
+});
+}
+</script>
+
+<!-- *************** Event Category Filtering function ***************** -->
 
 <div class="container text-center" style="background-color: white;">
-<footer class="container-fluid text-center">
-  <a href="#aroundMe" title="To Top">
-    <span class="glyphicon glyphicon-chevron-up"></span>
-  </a>
-  <p>&copy 2017 Proudly Created By TEAM 32</p>
-</footer> 
-</div>
-
-    <script src="https://use.fontawesome.com/9923c2a030.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>  
+  <footer class="container-fluid text-center">
+    <a href="#aroundMe" title="To Top">
+      <span class="glyphicon glyphicon-chevron-up"></span>
+    </a>
+    <p>&copy 2017 Proudly Created By TEAM 32</p>
+  </footer> 
+</div> 
 
 <script>
+
 $(document).ready(function(){
   // Add smooth scrolling to all links in navbar + footer link
   $(".navbar a, footer a[href='#aroundMe']").on('click', function(event) {

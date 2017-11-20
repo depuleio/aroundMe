@@ -25,7 +25,7 @@ SECRET_KEY = 'rqr_cjv4igscyu8&&(0%e(=sy=f2)p=f_wn&@0xsp7m$@!kp=d'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['depuleio.pythonanywhere.com',u'localhost']
+ALLOWED_HOSTS = ['depuleio.pythonanywhere.com',u'localhost', u'127.0.0.1']
 
 
 # Application definition
@@ -127,15 +127,22 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+if not DEBUG:
 
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, '~/aroundMe/static'),
-] 
+    STATICFILES_DIRS = [
+        os.path.join(BASE_DIR, '~/aroundMe/static'),
+    ] 
 
-#STATIC_ROOT = os.path.join(BASE_DIR, '/static')
+else:
 
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+    STATICFILES_DIRS = [
+        os.path.join(BASE_DIR, 'static'),
+    ] 
+
+#STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+#MEDIA_URL = '/media/'
+#MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'home'

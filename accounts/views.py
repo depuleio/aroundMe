@@ -7,12 +7,17 @@ from django.utils.decorators import method_decorator
 from django.views.generic import UpdateView
 
 from .forms import SignUpForm
+from django import forms
 
 
 def signup(request):
     if request.method == 'POST':
         form = SignUpForm(request.POST)
         if form.is_valid():
+            try:
+                form.clean_email()
+            except forms.ValidationError as e:
+                print(str(e))
             user = form.save()
             auth_login(request, user)
             return redirect('home')

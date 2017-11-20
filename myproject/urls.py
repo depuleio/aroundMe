@@ -7,15 +7,19 @@ from boards import views
 
 urlpatterns = [
     url(r'^$', views.home, name='home'),
-    url(r'^home', views.home, name='home'),
+    url(r'^home/$', views.home, name='home'),
     url(r'^landingpage/$', views.landingpage, name='landingpage'),
     url(r'^app/createEvent/$', views.createEvent, name='createEvent'),
+    url(r'^app/deleteEvent/$', views.delete_event, name='deleteEvent'),
     
     url(r'^eventpage/$', views.eventpage, name='eventpage'),
-
+    url(r'^eventForm/(?P<eventid>\d+)/$', views.eventForm, name='eventForm'),
     url(r'^signup/$', accounts_views.signup, name='signup'),
     url(r'^login/$', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
     url(r'^logout/$', auth_views.LogoutView.as_view(), name='logout'),
+
+    url(r'^deleteComment/$',views.delete_comment,name='deletecomment'),
+    url(r'^addComment/$',views.add_comment,name='addcomment'),
 
     url(r'^reset/$',
         auth_views.PasswordResetView.as_view(
