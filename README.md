@@ -14,7 +14,6 @@ First, clone the repository to your local machine:
 git clone https://github.com/depuleio/aroundMe.git
 ```
 
-
 Install the requirements:
 
 3. Have Python 2.7
